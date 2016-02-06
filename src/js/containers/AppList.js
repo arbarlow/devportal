@@ -6,7 +6,8 @@ import { requestApp } from '../actions/apps.js'
 
 const mapStateToProps = (state) => {
   return {
-    apps: state.apps.items
+    apps: state.apps.items,
+    currentApp: state.apps.currentApp
   }
 }
 
@@ -16,16 +17,15 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-let AppList = ({apps, expandAction}) => (
-  <ul className={styles.apps}>
-    {apps.map(app =>
+let AppList = ({apps, currentApp, expandAction}) => (
+  <div className={styles.apps}>
+    {apps.map(app => (
       <App
         key={app.id}
         app={app}
-        expandAction={expandAction}
-      />
-    )}
-  </ul>
+        expandAction={expandAction} />
+    ))}
+  </div>
 )
 
 AppList = connect(

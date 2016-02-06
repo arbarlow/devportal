@@ -1,19 +1,19 @@
 :local .apps {
-  height: 100%;
-  width: 24em;
-  background-color: #FFF;
-  float: left;
+  width: 48em;
+  margin: 4em auto;
 }
 
 :local .app {
   border-bottom: 1px solid #E6E6E6;
   list-style: none;
-  height: 90px;
+  min-height: 90px;
   background-color: #FFF;
   cursor: pointer;
+  margin-bottom: 1em;
+  display: block;
 }
 
-:local .app img {
+:local .app > img {
   width: 4em;
   height: 4em;
   border-radius: 2em;

@@ -1,21 +1,11 @@
 import { connect } from 'react-redux'
 import React from 'react'
 import AppList from './AppList.js'
-import AppInfo from './AppInfo.js'
 import Login from './Login.js'
 
 let DevPortal = ({auth, app}) => {
   if (auth.loggedIn) {
-    return (
-      <div>
-        <div>
-          <AppList/>
-        </div>
-        <div>
-          <AppInfo app={app}/>
-        </div>
-      </div>
-    )
+    return <AppList/>
   } else {
     return <Login/>
   }

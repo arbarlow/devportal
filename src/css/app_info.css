@@ -1,10 +1,22 @@
 :local .appInfo {
-  float: left;
+  margin-top: 3em;
   margin-left: 2em;
   list-style: none;
 }
 
 :local .appInfo li {
   margin-bottom: 0.5em;
+  height: 4em;
+}
+
+:local .appInfo p {
+  padding-top: 0.8em;
+  margin-left: 4em;
+}
+
+:local .appInfo li img {
+  width: 3em;
+  border-radius: 1.5em;
+  float: left;
 }
 
