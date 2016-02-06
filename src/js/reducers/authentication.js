@@ -1,5 +1,6 @@
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_FORM_UPDATE
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_FORM_UPDATE,
+  AUTH_FAILURE
 } from '../actions/authentication.js'
 
 export const defaultState = {
@@ -29,6 +30,13 @@ export function AuthReducer(state = defaultState, action) {
         isRequestingLogin: false,
         loggedIn: false,
         error: action.error
+      })
+    case AUTH_FAILURE:
+      return Object.assign({}, state, {
+        isRequestingLogin: false,
+        loggedIn: false,
+        error: action.error,
+        accessToken: null
       })
     default:
       return state

@@ -1,4 +1,5 @@
-import fetch from 'isomorphic-fetch'
+import { loginRequest } from '../lib/api.js'
+import { requestApps } from './apps.js'
 
 export const LOGIN_FORM_UPDATE = "LOGIN_FORM_UPDATE"
 export function updateLoginForm(change) {
@@ -32,37 +33,40 @@ function loginFailure(authData) {
   }
 }
 
+export const AUTH_FAILURE = "AUTH_FAILURE"
+export function authFailure() {
+  document.cookie = ""
+  return {
+    type: AUTH_FAILURE,
+    error: "You token has expired :)",
+  }
+}
+
+export function checkAuthToken(store){
+  if(document.cookie != ""){
+    store.dispatch(
+      loginSuccess({accessToken: document.cookie})
+    )
+    store.dispatch(requestApps())
+  }
+}
+
 // Async Actions
 export function login(form = {}) {
   return function (dispatch) {
-
     dispatch(requestLogin())
 
-    let headers = new Headers({
-      "Content-Type": "application/json",
-    })
-
-    let loginRequest = new Request(
-      '//guarded-thicket-22918.herokuapp.com/login', 
+    loginRequest(form, (response, json) => {
+      if (response.status == 401) 
       {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(form)
+        dispatch(loginFailure(json))
+      } 
+      else 
+      {
+        document.cookie = json.accessToken
+        dispatch(loginSuccess(json))
+        dispatch(requestApps())
       }
-    )
-
-    return fetch(loginRequest)
-    .then(response => {
-      response.json().then(function(json) {
-        if (response.status == 401) 
-          {
-            dispatch(loginFailure(json))
-          } 
-          else 
-          {
-            dispatch(loginSuccess(json))
-          }
-      });
     })
   }
 }

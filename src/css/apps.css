@@ -1,0 +1,37 @@
+:local .apps {
+  height: 100%;
+  width: 24em;
+  background-color: #FFF;
+  float: left;
+}
+
+:local .app {
+  border-bottom: 1px solid #E6E6E6;
+  list-style: none;
+  height: 90px;
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+:local .app img {
+  width: 4em;
+  height: 4em;
+  border-radius: 2em;
+  float: left;
+  margin-right: 1.5em;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+:local .app h3 {
+  color: #000;
+  font-size: 16px;
+  font-weight: normal;
+  padding-top: 1.5em;
+}
+
+:local .app p {
+  color: #666;
+  font-size: 14px;
+  font-weight: normal;
+}

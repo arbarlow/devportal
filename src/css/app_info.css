@@ -1,0 +1,10 @@
+:local .appInfo {
+  float: left;
+  margin-left: 2em;
+  list-style: none;
+}
+
+:local .appInfo li {
+  margin-bottom: 0.5em;
+}
+

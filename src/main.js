@@ -10,11 +10,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import authentication from './js/reducers/authentication.js'
-import App from './js/containers/App'
+import apps from './js/reducers/apps.js'
+import DevPortal from './js/containers/DevPortal'
 
 const logger = createLogger()
 const devPortalApp = combineReducers({
-  authentication
+  authentication,
+  apps
 })
 
 let store = createStore(
@@ -27,7 +29,11 @@ let store = createStore(
 
 render(
   <Provider store={store}>
-    <App/>
+    <DevPortal/>
   </Provider>,
   document.getElementById('root')
 )
+
+
+import { checkAuthToken } from './js/actions/authentication.js'
+checkAuthToken(store)
